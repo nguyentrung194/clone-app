@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }) {
         auth={auth}
         gqlEndpoint={`https://hasura-6ec6d61a.nhost.app/v1/graphql`}
         headers={{
-          role: "public",
+          role: "user",
         }}
       >
         <Component {...pageProps} />

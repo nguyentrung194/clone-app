@@ -1,0 +1,1 @@
+{"ast":null,"code":"import nhost from \"nhost-js-sdk\";\nvar config = {\n  base_url: \"https://backend-6ec6d61a.nhost.app\",\n  ssr: false\n};\nnhost.initializeApp(config);\nvar auth = nhost.auth();\nvar storage = nhost.storage();\nexport { auth, storage };","map":null,"metadata":{},"sourceType":"module"}
