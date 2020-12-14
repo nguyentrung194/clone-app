@@ -1,5 +1,5 @@
 import { NhostAuthProvider, NhostApolloProvider } from "react-nhost";
-import { auth } from "utils/nhost.js";
+import { auth } from "../utils/nhost.js";
 import "../styles/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
