@@ -12,7 +12,7 @@ export const GET_USER_DATA = gql`
 export const TRANSACTION = gql`
   mutation transaction(
     $from_account: uuid!
-    $to_account: string!
+    $to_account: String!
     $reduction: Int!
     $increase: Int!
   ) {
