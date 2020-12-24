@@ -24,7 +24,7 @@ export default function Transaction() {
               await transaction({
                 variables: {
                   from_account: from_id,
-                  to_account: values.accountNumber,
+                  to_account: Number(values.accountNumber),
                   increase: values.cost,
                   reduction: -values.cost,
                 },
