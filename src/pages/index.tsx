@@ -1,15 +1,24 @@
-import { Layout } from "components/layout";
-import { useRouter } from "next/router";
+import { Layout, Main } from "components/layout";
+import Link from "next/link";
 import { useAuth } from "react-nhost";
 export default function Home() {
-  const router = useRouter();
-  const signedIn = useAuth();
-  if (!signedIn) {
-    router.push("/login");
+  const { signedIn } = useAuth();
+  if (!signedIn && !signedIn) {
+    return (
+      <Layout>
+        <div>Let login</div>
+      </Layout>
+    );
   }
   return (
     <Layout>
-      <div>Home</div>
+      <Main>
+        <div>
+          <Link href="/transaction">
+            <a>Transaction page</a>
+          </Link>
+        </div>
+      </Main>
     </Layout>
   );
 }

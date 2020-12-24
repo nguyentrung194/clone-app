@@ -6,12 +6,14 @@ import { auth } from "../utils/nhost";
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [display_name, setDisplay_name] = useState("");
   const router = useRouter();
   async function handleSubmit(e: any) {
     e.preventDefault();
     console.log("Handle submit");
     try {
-      await auth.register(email, password);
+      await auth.register(email, password, { display_name });
+      await auth.login(email, password);
       router.push("/");
     } catch (error) {
       alert("Register fail!");
@@ -22,6 +24,16 @@ export default function Register() {
       <div className="text-center uppercase text-gray-700 pb-4">Register</div>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col">
+          <input
+            className="border rounded px-2 py-1 my-2"
+            type="text"
+            autoFocus
+            placeholder="Your name"
+            value={display_name}
+            onChange={(e) => {
+              setDisplay_name(e.target.value);
+            }}
+          />
           <input
             className="border rounded px-2 py-1 my-2"
             type="text"

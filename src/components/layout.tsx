@@ -1,18 +1,10 @@
 import { useRouter } from "next/router";
 import React from "react";
-import { auth } from "utils/nhost";
+import { auth, ProvideAuth } from "utils/nhost";
 import { useAuth } from "react-nhost";
 import Link from "next/link";
-import { gql, useQuery } from "@apollo/client";
-
-const GET_USER_DATA = gql`
-  query getUserData($user_id: uuid!) {
-    user: users_by_pk(id: $user_id) {
-      id
-      display_name
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import { GET_USER_DATA } from "graphql/schema";
 
 export function UserHeader() {
   const router = useRouter();
@@ -31,11 +23,11 @@ export function UserHeader() {
   const { user } = data;
   return (
     <div className="flex flex-row">
-      <div className="pr-2">
+      {/* <div className="pr-2">
         <Link href="/new">
           <a>Create post</a>
         </Link>
-      </div>
+      </div> */}
       <div>
         {user.display_name} /{" "}
         <span
@@ -56,7 +48,11 @@ export function Header() {
   const { signedIn } = useAuth();
   return (
     <div className="flex items-center justify-between bg-indigo-700 text-white p-4">
-      <div>Logo</div>
+      <div>
+        <Link href="/">
+          <a>Logo</a>
+        </Link>
+      </div>
       <div className="flex items-center">
         {signedIn && signedIn ? (
           <>
@@ -65,7 +61,7 @@ export function Header() {
         ) : (
           <>
             <div className="flex ">
-              Anonymous /{" "}
+              Anonymous /
               <Link href="/login">
                 <a className="px-2">Login</a>
               </Link>
@@ -90,9 +86,11 @@ export function Main({ children }: ChildProps) {
 
 export function Layout({ children }: ChildProps) {
   return (
-    <div>
-      <Header />
-      {children}
-    </div>
+    <ProvideAuth>
+      <div>
+        <Header />
+        {children}
+      </div>
+    </ProvideAuth>
   );
 }

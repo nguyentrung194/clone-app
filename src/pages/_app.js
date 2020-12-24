@@ -1,5 +1,5 @@
 import { NhostAuthProvider, NhostApolloProvider } from "react-nhost";
-import { auth } from "../utils/nhost.ts";
+import { auth } from "../utils/nhost";
 import "../styles/tailwind.css";
 
 function MyApp({ Component, pageProps }) {
@@ -7,9 +7,11 @@ function MyApp({ Component, pageProps }) {
     <NhostAuthProvider auth={auth}>
       <NhostApolloProvider
         auth={auth}
-        gqlEndpoint={`https://hasura-6ec6d61a.nhost.app/v1/graphql`}
+        gqlEndpoint={`https://hasura-3eb16394.nhost.app/v1/graphql`}
       >
+        {/* <ProvideAuth> */}
         <Component {...pageProps} />
+        {/* </ProvideAuth> */}
       </NhostApolloProvider>
     </NhostAuthProvider>
   );
