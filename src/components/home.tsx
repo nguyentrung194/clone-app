@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout } from "../../clone-app/src/components/layout";
+import { Layout } from "./layout";
 
 export const Home = () => {
   return (
