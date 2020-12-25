@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { auth } from "../utils/nhost";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Head from "next/head";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -19,6 +20,10 @@ export default function Register() {
   };
   return (
     <div className="container flex flex-col max-w-xl max-auto shadow p-4 my-12 mx-auto">
+      <Head>
+        <title>Login</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="text-center uppercase text-gray-700 pb-4">Login</div>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col">

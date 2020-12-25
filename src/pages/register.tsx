@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -21,6 +22,10 @@ export default function Register() {
   }
   return (
     <div className="container flex flex-col max-w-xl max-auto shadow p-4 my-12 mx-auto">
+      <Head>
+        <title>Register</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="text-center uppercase text-gray-700 pb-4">Register</div>
       <form onSubmit={handleSubmit}>
         <div className="flex flex-col">

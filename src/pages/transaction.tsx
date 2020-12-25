@@ -5,14 +5,23 @@ import React from "react";
 import { Form, Formik, FormikProps } from "formik";
 import { auth } from "utils/nhost";
 import { useAuth } from "react-nhost";
+import Head from "next/head";
 
 export default function Transaction() {
   const [transaction] = useMutation(TRANSACTION);
   const { signedIn } = useAuth();
   const from_id = signedIn && auth.getClaim("x-hasura-user-id");
+
   return (
     <Layout>
       <div className="container flex flex-col max-w-xl max-auto shadow p-4 my-12 mx-auto">
+        <Head>
+          <title>Transaction</title>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+        </Head>
         <div className="text-center uppercase text-gray-700 pb-4">
           Transaction
         </div>
@@ -65,7 +74,13 @@ export default function Transaction() {
               )}
               <button
                 type="submit"
-                className="inline bg-indigo-700 text-white px-4 py-2 text-sm"
+                disabled={props.isSubmitting}
+                onClick={() => {
+                  console.log("click");
+                }}
+                className={`inline ${
+                  props.isSubmitting ? "bg-purple-200" : "bg-indigo-700"
+                } text-white px-4 py-2 text-sm`}
               >
                 Submit
               </button>
@@ -76,17 +91,3 @@ export default function Transaction() {
     </Layout>
   );
 }
-
-// export async function getStaticProps() {
-//   // Call an external API endpoint to get posts.
-//   // You can use any data fetching library
-//   const user_id = auth.isAuthenticated && auth.getClaim("x-hasura-user-id");
-
-//   // By returning { props: posts }, the Blog component
-//   // will receive `posts` as a prop at build time
-//   return {
-//     props: {
-//       user_id,
-//     },
-//   };
-// }

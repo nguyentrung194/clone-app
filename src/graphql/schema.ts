@@ -5,6 +5,7 @@ export const GET_USER_DATA = gql`
     user: users_by_pk(id: $user_id) {
       id
       display_name
+      account_number
     }
   }
 `;

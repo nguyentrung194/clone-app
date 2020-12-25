@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { auth, ProvideAuth } from "utils/nhost";
 import { useAuth } from "react-nhost";
 import Link from "next/link";
@@ -29,13 +29,14 @@ export function UserHeader() {
         </Link>
       </div> */}
       <div>
-        {user.display_name} /{" "}
+        <span className="px-1">{user.display_name}</span> / Account number:
+        <span className="px-1">{user.account_number}</span> /
         <span
           onClick={() => {
             auth.logout();
             router.push("/login");
           }}
-          className="cursor-pointer"
+          className="px-1 cursor-pointer"
         >
           Logout
         </span>
@@ -85,6 +86,13 @@ export function Main({ children }: ChildProps) {
 }
 
 export function Layout({ children }: ChildProps) {
+  const router = useRouter();
+  const { signedIn } = useAuth();
+  useEffect(() => {
+    if (!signedIn && !signedIn) {
+      router.push("/");
+    }
+  }, [signedIn]);
   return (
     <ProvideAuth>
       <div>
