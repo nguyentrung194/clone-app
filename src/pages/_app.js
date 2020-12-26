@@ -1,6 +1,7 @@
 import { NhostAuthProvider, NhostApolloProvider } from "react-nhost";
 import { auth } from "../utils/nhost";
 import "../styles/tailwind.css";
+import { ToastProvider } from "react-toast-notifications";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -9,9 +10,11 @@ function MyApp({ Component, pageProps }) {
         auth={auth}
         gqlEndpoint={`https://hasura-3eb16394.nhost.app/v1/graphql`}
       >
-        {/* <ProvideAuth> */}
-        <Component {...pageProps} />
-        {/* </ProvideAuth> */}
+        <ToastProvider autoDismissTimeout="3000" placement="bottom-left">
+          {/* <ProvideAuth> */}
+          <Component {...pageProps} />
+          {/* </ProvideAuth> */}
+        </ToastProvider>
       </NhostApolloProvider>
     </NhostAuthProvider>
   );

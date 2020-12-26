@@ -3,19 +3,26 @@ import { auth } from "../utils/nhost";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Head from "next/head";
+import { useToasts } from "react-toast-notifications";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const { addToast } = useToasts();
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log("Handle submit");
     try {
       await auth.login(email, password);
+      addToast("Login successfull!", {
+        appearance: "success",
+        autoDismiss: true,
+      });
       router.push("/");
     } catch (error) {
-      alert("Login fail!");
+      addToast(error.message, { appearance: "error", autoDismiss: true });
     }
   };
   return (

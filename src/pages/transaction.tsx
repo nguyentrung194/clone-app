@@ -6,12 +6,13 @@ import { Form, Formik, FormikProps } from "formik";
 import { auth } from "utils/nhost";
 import { useAuth } from "react-nhost";
 import Head from "next/head";
+import { useToasts } from "react-toast-notifications";
 
 export default function Transaction() {
   const [transaction] = useMutation(TRANSACTION);
   const { signedIn } = useAuth();
   const from_id = signedIn && auth.getClaim("x-hasura-user-id");
-
+  const { addToast } = useToasts();
   return (
     <Layout>
       <div className="container flex flex-col max-w-xl max-auto shadow p-4 my-12 mx-auto">
@@ -38,10 +39,17 @@ export default function Transaction() {
                   reduction: -values.cost,
                 },
               });
+              addToast("Successfull!", {
+                appearance: "success",
+                autoDismiss: true,
+              });
               actions.resetForm();
             } catch (error) {
               actions.setSubmitting(false);
-              console.log(error);
+              addToast(error.message, {
+                appearance: "error",
+                autoDismiss: true,
+              });
             }
             actions.setSubmitting(false);
           }}
