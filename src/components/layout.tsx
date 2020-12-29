@@ -29,8 +29,8 @@ export function UserHeader() {
         </Link>
       </div> */}
       <div>
-        <Link href="/find-profile">
-          <a>Find profile</a>
+        <Link href="/profile">
+          <a>Your profile</a>
         </Link>
       </div>
       <div>

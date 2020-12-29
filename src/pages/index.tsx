@@ -33,11 +33,18 @@ export default function Home() {
           />
         </Head>
         <Main>
-          <div>
-            <Link href="/transaction">
-              <a>Transaction page</a>
-            </Link>
-          </div>
+          <>
+            <div>
+              <Link href="/transaction">
+                <a>Transaction page</a>
+              </Link>
+            </div>
+            <div>
+              <Link href="/find-profile">
+                <a>Find profile</a>
+              </Link>
+            </div>
+          </>
         </Main>
       </>
     </Layout>
