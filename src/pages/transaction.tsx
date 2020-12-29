@@ -58,6 +58,7 @@ export default function Transaction() {
             <Form className="flex flex-col">
               <input
                 type="text"
+                autoFocus
                 className="border rounded px-2 py-1 my-2"
                 onChange={(e) => {
                   props.setFieldValue("accountNumber", e.target.value);

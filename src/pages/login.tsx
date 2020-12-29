@@ -47,7 +47,6 @@ export default function Register() {
           <input
             className="border rounded px-2 py-1 my-2"
             type="password"
-            autoFocus
             placeholder="Your password"
             value={password}
             onChange={(e) => {
