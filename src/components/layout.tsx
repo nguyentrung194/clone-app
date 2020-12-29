@@ -29,6 +29,11 @@ export function UserHeader() {
         </Link>
       </div> */}
       <div>
+        <Link href="/find-profile">
+          <a>Find profile</a>
+        </Link>
+      </div>
+      <div>
         <span className="px-1">{user.display_name}</span> / Account number:
         <span className="px-1">{user.account_number}</span> /
         <span

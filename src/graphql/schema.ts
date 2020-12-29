@@ -6,6 +6,15 @@ export const GET_USER_DATA = gql`
       id
       display_name
       account_number
+      balance
+    }
+  }
+`;
+
+export const GET_USER_DATA_BY_ACCOUNT_NUMBER = gql`
+  query getUserInfor($account_number: Int!) {
+    users(where: { account_number: { _eq: $account_number } }) {
+      display_name
     }
   }
 `;
